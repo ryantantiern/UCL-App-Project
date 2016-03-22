@@ -1,0 +1,6 @@
+References
+
+JS Object - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects
+JQuery extend (code) - https://api.jquery.com/jquery.extend/ 
+getMousePos (code) - http://www.html5canvastutorials.com/advanced/html5-canvas-mouse-coordinates/
+remove eventListener - https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener
