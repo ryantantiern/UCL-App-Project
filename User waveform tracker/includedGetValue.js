@@ -24,7 +24,7 @@ function drawLine(x1, y1, x2, y2){
 function drawUserLine(){
   // this is the main loop
   console.log("Draw User Line");
-
+  
   if(flag == 0){
     context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -58,12 +58,13 @@ function drawUserLine(){
 
 function getValue() {
   // push value into final Array
-  var timeElapsed = Date.now() - startTime; 
-  var savedValue ={x: null, y: null, timeStamp: null};
-  savedValue.timeStamp = timeElapsed;
+  var savedValue ={"x": null, "y": null, "timeStamp": null}; // JS object
+  var timeElapsed = Date.now() - startTime;
+  savedValue["timeStamp"] = timeElapsed;
   $.extend(savedValue, userLine[userLine.length - 1]);
   trackedWave.push(savedValue); // NOTE :: elements here do not represent a full waveform 
                                 // as the x values have not been corrected to the screen width
+                                // Array of objects ->> json formated
 }
 
 function adjustWaveToScreen(uncorrectedWave){
@@ -86,15 +87,27 @@ function printFinalWaveForm(correctedWave){
 }                    
 
 var end_DrawUserLine = function(e){
+  // Stop loop 
   console.log("End_Draw_User_Line");
   if(e.keyCode == 69){
     flag = 1;
-    e.target.removeEventListener('mousemove', updateUserLine);
-    e.target.removeEventListener('mousedown', handler); // True when paused
-    e.target.removeEventListener('mousedown', pause); // True when not paused
-    adjustWaveToScreen(trackedWave);
-    printFinalWaveForm(trackedWave);
+    var new_element = canvas.cloneNode(true);
+    /*canvas.parentNode.replaceChild(new_element, canvas);
+    canvas.removeEventListener('mousemove', updateUserLine);
+    canvas.removeEventListener('mousedown', handler); // True when paused
+    canvas.removeEventListener('mousedown', pause); // True when not paused
     e.target .removeEventListener(e.type, arguments.callee);
+    adjustWaveToScreen(trackedWave);
+    /* TRACKED WAVE SHOULD BE SAVED AS A JSON FILE HERE THEN EXPORTED TO DB*/
+    printFinalWaveForm(trackedWave);
+
+    var str_json = JSON.stringify(trackedWave);
+    var request= new XMLHttpRequest();
+    request.open("POST", "http://localhost/JSON_Handler.php", true);
+    request.setRequestHeader("Content-type", "application/json");
+    request.send(str_json);
+
+    
   }
 }
 
@@ -113,14 +126,14 @@ function updateIfNoEntry(){
 var handler = function(e){
   console.log("handler");
 
-  flag = 0;
+  flag = 0; //-> starts updateUserLine
   currentPos = getMousePos(canvas, e);
   lastRecordedPos = getMousePos(canvas, e);
   userLine.push(currentPos);
-  drawUserLine();
+  drawUserLine(); //-> goto drawUserLine
   e.target.removeEventListener(e.type, arguments.callee);
-  e.target.addEventListener('mousemove', updateUserLine, false);
-  e.target.addEventListener('mousedown', pause, false);
+  e.target.addEventListener('mousemove', updateUserLine, false); 
+  e.target.addEventListener('mousedown', pause, false); //-> goto pause
 
 }
 
@@ -132,11 +145,11 @@ var updateUserLine = function(e){
 }
 
 var pause = function(e){
-  flag = 1;
+  flag = 1; //-> stops updateUserLine
   e.target.removeEventListener(e.type, arguments.callee);
-  e.target.removeEventListener('mousemove', updateUserLine);
-  e.target.addEventListener('mousedown', handler, false);
-}
+  e.target.removeEventListener('mousemove', updateUserLine); 
+  e.target.addEventListener('mousedown', handler, false); ///-> goto handler
+} 
 
 
 
@@ -153,12 +166,12 @@ var currentPos;
 var lastRecordedPos;
 var userLine = new Array();
 var startTime = Date.now();
-var trackedWave = new Array(); // Raw mouse tracked values
-
+var trackedWave = new Array(); // Raw mouse tracked values 
+                               // Array of objects
 var flag = 0; // turns drawUserLine on or off
 
-canvas.addEventListener('mousedown', handler); 
-window.addEventListener('keydown', end_DrawUserLine);
+canvas.addEventListener('mousedown', handler); // ideal use case -> go to handler
+window.addEventListener('keydown', end_DrawUserLine); // to be edited based on audio file 
 
 
 

@@ -1,0 +1,53 @@
+<html>
+<head>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+         // speed in milliseconds
+         var scrollSpeed = 21;
+
+         // set the default position
+         var current = 960;
+
+         // set the direction
+         var direction = 'h';
+
+         function bgscroll() {
+
+             // 1 pixel row at a time
+             current -= 1;
+
+             // move the background with backgrond-position css properties
+             $('body').css("background-position", (direction == 'h') ? current + "px 340" : "0 " + current + "px");
+
+         }
+
+         //Calls the scrolling function repeatedly
+         setInterval("bgscroll()", scrollSpeed);
+    </script>
+	
+    <style type="text/css">
+        body {
+            background-image: url('soundpitch.jpg');
+			background-size: auto auto;
+			background-repeat:no-repeat;
+        }
+    </style>
+	
+	<!--Cover properties-->
+	<style>
+	#cover {
+	position: fixed; 
+	top: 0; 
+	left: 960; 
+	
+	
+	}
+	</style>
+
+	<!--Adds the cover-->
+	<img src="cover.jpg" id="cover" alt=""/>
+</head>
+<body>
+
+</body>
+</html>
