@@ -55,7 +55,8 @@
 											function drawLine(x1, y1, x2, y2){
 													context.beginPath();
 													context.moveTo(x1, y1);
-													context.lineTo(x2, y2);
+													 context.quadraticCurveTo((x1+x2)/2,(y1+y2)/2, x2, y2);
+													//context.lineTo(x2,y2););
 													context.lineWidth =1;
 													
 													context.strokeStyle ='red';
@@ -84,4 +85,7 @@
 <?php 
 	session_write_close();
 	session_unset();
+	session_unregister();
+	session_destroy();
+
 ?>

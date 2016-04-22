@@ -11,7 +11,10 @@ function getMousePos(canvas, evt) {
 function drawLine(x1, y1, x2, y2){
   context.beginPath();
   context.moveTo(x1, y1);
-  context.lineTo(x2, y2);
+	context.quadraticCurveTo((x1+x2)/2,(y1+y2)/2, x2, y2);
+	//context.lineTo(x2,y2);
+  
+	context.lineWidth = 3;
   context.stroke();
 }
 var updateUserLine = function(e){
@@ -37,7 +40,7 @@ function drawUserLine(){
 function move_line_left(){
 	if(play == 1){
 		for(i = 0; i < userLine.length; i++){
-		 userLine[i].x -= 2;
+		 userLine[i].x -= 1;
 		 if(userLine[0].x < 0){
 			 userLine.splice(0,1);
 		 }

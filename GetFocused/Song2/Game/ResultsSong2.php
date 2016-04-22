@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +43,7 @@
                         <h1 class="brand-heading"><br>Get Focused!</h1>
                         <h3>Excellent</h3>
                         <img src="../../img/WaveSong2.jpg" alt="Original Soundwave" style="width:704px;height:228px;">
-												<div style=" width:704px;height:228; position: absolute; top: 260px; left: 38px; border:0;">	
+												<div style=" width:704px;height:228px; position: absolute; top: 260px; left: 38px; border:0;">	
 													<canvas !important id="myCanvas" style="height:100%; width:100%;  background" > </canvas>
 												</div>
                         <ul class="list-inline">
@@ -61,7 +62,8 @@
 											function drawLine(x1, y1, x2, y2){
 													context.beginPath();
 													context.moveTo(x1, y1);
-													context.lineTo(x2, y2);
+													context.quadraticCurveTo((x1+x2)/2,(y1+y2)/2, x2, y2);
+													//context.lineTo(x2,y2);
 													context.lineWidth =1;
 													
 													context.strokeStyle ='red';
@@ -87,3 +89,11 @@
 </body>
 
 </html>
+
+<?php 
+	session_write_close();
+	session_unset();
+	session_unregister();
+	session_destroy();
+
+?>
