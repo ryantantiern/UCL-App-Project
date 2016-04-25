@@ -85,7 +85,6 @@
 <?php 
 	session_write_close();
 	session_unset();
-	session_unregister();
 	session_destroy();
 
 ?>

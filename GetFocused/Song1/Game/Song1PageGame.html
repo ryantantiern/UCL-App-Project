@@ -26,12 +26,24 @@
 	<meta http-equiv="refresh" content="44;url=ResultsSong1.php"/> 
 		 
 
-		<style>
+		<style > 
 			canvas{
-				background-color: white;
-				margin: 0px;
-				padding: 0px;
-			}	
+			background-color:white;
+			margin: 0px;
+			padding: 0px;
+      background-image: url('soundpitch.jpg');
+			background-position: 300% 300%;
+			background-size: auto ;
+			background-repeat:no-repeat;
+     }
+	
+	<!--Cover properties-->
+
+		#cover {
+			position:center;
+			top: 0;
+			left: 50%; 
+		}	
 		</style>
 	</head>
 	<body>
@@ -47,7 +59,9 @@
 
 				<div>	
 						<canvas id="myCanvas" ></canvas>
+						
 				</div>
+				
 
 
 				<audio id="myAudio" autoplay >
@@ -57,6 +71,10 @@
 				</center>
 				
 			<script src="../../js/waveform.js"></script>	
+			<script>
+	
+    </script>
+	
 		</div>
 	</body>
 </html>
