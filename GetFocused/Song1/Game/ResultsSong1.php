@@ -48,8 +48,12 @@
                                 <a href="../../html/MainMenu.html" class="btn btn-default btn-lg"><i class="fa fa-home"></i><span class="">   Main Menu</span></a>
                             </li>
                             <li>
-                                <a href="javascript:window.open('','_self').close();" class="btn btn-default btn-lg"><i class="fa fa-sign-out"></i><span class="">   Quit</span></a>
+                                <a href="../../index.php" class="btn btn-default btn-lg"><i class="fa fa-caret-square-o-right"></i><span class="">   New Session</span></a>
                              </li>
+                            <li>
+                                <a href="javascript:window.open('','_self').close();" class="btn btn-default btn-lg"><i class="fa fa-sign-out"></i><span class="">   Thanks!</span></a>
+                             </li>
+
                         </ul>
 											<script>											
 											function drawLine(x1, y1, x2, y2){
@@ -68,7 +72,7 @@
 											
 																					
 											for( i=0; i < myGraphArray.length-1; i++){ 
-												drawLine((myGraphArray[i].t * 704), (myGraphArray[i].y * 328), (myGraphArray[i+1].t* 704),( myGraphArray[i+1].y * 328));
+												drawLine((myGraphArray[i].t * canvas.width), (myGraphArray[i].y * canvas.height), (myGraphArray[i+1].t* canvas.width),( myGraphArray[i+1].y * canvas.height));
 											} 
 												
 											</script>

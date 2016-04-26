@@ -61,7 +61,7 @@
         <div class="form-inline">
             <div class="form-group">
               <select class="form-control" id="gender">
-                <option> - Gender - </option>
+                <option value = -123 > - Gender - </option>
                 <option value="1">Male</option>
                 <option value="2">Female</option>
               </select>
@@ -77,7 +77,7 @@
         <div class="form-inline">
             <div class="form-group">
                 <select class="form-control" id="birth-day">
-                    <option> - Day - </option>
+                    <option value = -123> - Day - </option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -113,7 +113,7 @@
             </div>
             <div class="form-group">
                 <select class="form-control" id="birth-month">
-                    <option> - Month - </option>
+                    <option value = -123> - Month - </option>
                     <option value="1">January</option>
                     <option value="2">Febuary</option>
                     <option value="3">March</option>
@@ -130,7 +130,7 @@
             </div>
             <div class="form-group">
                 <select class="form-control" id="birth-year">
-                    <option> - Year - </option>
+                    <option value = -123> - Year - </option>
 										<option value="2016">2016</option>
                     <option value="2015">2015</option>
                     <option value="2014">2014</option>
@@ -246,7 +246,7 @@
         <div class="form-inline">
             <div class="form-group">
               <select class="form-control" id="music-level" required>
-                <option ><center>- Choose from the list -</center> </option>
+                <option value = -123 ><center>- Choose from the list -</center> </option>
                 <option value="0">0 = Completely Disagree</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -267,23 +267,31 @@
 <br><br>
 
 <br>
-    <a href="html/MainMenu.html" class="">
         <i class="fa fa-arrow-circle-o-right fa-4x" onclick="packageInfo()">
 				<script>
 					<!-- COMMENT THIS SCRIPT IF THERE IS NO SERVER -->
 					function packageInfo(){
-						var sex = document.getElementById("gender").value;
-						var birthdayDate =  document.getElementById("birth-year").value + "-" + document.getElementById("birth-month").value
-											+ "-" + document.getElementById("birth-day").value;
-						var musiclevel = document.getElementById("music-level").value;
-						var json_package = JSON.stringify({gender : sex, dob : birthdayDate, musicality : musiclevel}); // string, string, string
-						
-						var request= new XMLHttpRequest();
-						var php_session = "http://localhost/GetFocused/php/sess_addui.php";
-						request.open("POST", php_session, true);
-						request.setRequestHeader("Content-type", "application/JSON");
-						request.send(json_package);
-						console.log(json_package);
+						if( document.getElementById("gender").value == -123 || document.getElementById("birth-year").value == -123
+								|| document.getElementById("birth-month").value == -123|| document.getElementById("birth-day").value == -123||
+								document.getElementById("music-level").value == -123){
+							alert ("Required field(s) incomplete");
+						}
+						else{
+							var sex = document.getElementById("gender").value;
+							var birthdayDate =  document.getElementById("birth-year").value + "-" + document.getElementById("birth-month").value
+												+ "-" + document.getElementById("birth-day").value;
+							var musiclevel = document.getElementById("music-level").value;
+							var json_package = JSON.stringify({gender : sex, dob : birthdayDate, musicality : musiclevel}); // string, string, string
+							
+							var request= new XMLHttpRequest();
+							var php_session = "http://localhost/GetFocused/php/sess_addui.php";
+							request.open("POST", php_session, true);
+							request.setRequestHeader("Content-type", "application/JSON");
+							request.send(json_package);
+							console.log(json_package);
+							
+							window.location = "html/MainMenu.html";
+						}
 					}
 					</script>
 				</i>

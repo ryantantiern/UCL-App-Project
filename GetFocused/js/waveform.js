@@ -28,8 +28,13 @@ function drawUserLine(){
   // drawing loop 
   if(play == 1){
 		context.clearRect(0, 0, canvas.width, canvas.height);
-		//FOR TESTING
-		drawLine(canvas.width/2, 0, canvas.width/2, canvas.height);
+		
+		//draws backwave
+
+		context.drawImage(imageObj, backwave_x, backwave_y);
+		context.drawImage(whiteCov, canvas.width * 0.55, 0);
+
+
 		if(userLine[0] != null){
 			for(i = 0; i < userLine.length - 1; i++){
 				drawLine(userLine[i].x , userLine[i].y, userLine[i+1].x, userLine[i+1].y);
@@ -43,8 +48,12 @@ function move_line_left(){
 	if(play == 1){
 		for(i = 0; i < userLine.length; i++){
 		 userLine[i].x -= 1;
+		 if(userLine[i] < -10){
+			 userLine.splice(i,1);
+		 }
 		}
-		setTimeout(function(){move_line_left();}, (40500)/(6.49*20/100*window.innerHeight));
+		backwave_x -= 1;
+		setTimeout(function(){move_line_left();},  audio.duration * 1000/(imageObj.width ) );
 	}
 }
 
@@ -174,6 +183,11 @@ var trackedWave = [];
 var timer; 
 var onMusic_correction;
 
+var imageObj = new Image();
+imageObj.src = '../Game/soundpitch.jpg';
+var whiteCov = new Image();
+whiteCov.src= '../../cover.jpg';
+
 
 var play = 1; //0=OFF 1=ON
 var mouse_move = 0;
@@ -182,33 +196,15 @@ var onMusic_go = 0;
 // Canvas Style
 canvas.width = window.innerWidth * 0.9;
 canvas.height = window.innerHeight * 0.7;
-
+var backwave_x = canvas.width * 0.55;
+var backwave_y = canvas.height * 0.4;
 
 window.addEventListener('keydown',manual_pp);
 audio.addEventListener('play',handler_play);
 audio.addEventListener('pause', handler_pause);
 audio.addEventListener('ended', handler_end);
 
-			// Above, I included Jquery as it was the recommended way to do this.
-        // speed in milliseconds - found a forumla for song 1 to make the speed right regardless of window size
-		
-        var scrollSpeed = 40000/(6.49*20/100*window.innerHeight);
-				console.log(audio.duration);
 
-        // set the default position  - window width/2, so it starts in the center
-        var current = canvas.width/2;
-
-		//function that scrolls the pitch wave
-    function bgscroll(){
-			//decrease 1 pixel every time the function is called
-			current-=1;
-			//From my understanding, 'current' is x value and what's after the '+' is y value.
-			//Given that the resolution is 1080p, the pitch wave height would be 216px, so 20%
-			//therefore, I set the height at 'px 40%' so it always places it in the center :)
-			$('canvas').css('background-position', current + 'px 20%');
-		}
-		//Calls the scrolling function repeatedly
-		setInterval("bgscroll()", scrollSpeed);
 
 
 

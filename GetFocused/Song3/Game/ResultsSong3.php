@@ -42,7 +42,7 @@
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading"><br>Get Focused!</h1><br>
                         <h3>Excellent</h3>
-                        <img src="../../img/WaveSong3.jpg" alt="Original Soundwave" style="width:704px;height:168px;">
+											<img src="../../img/WaveSong3.jpg" alt="Original Soundwave" style="width:704px;height:168px;">
 												<div style=" width:704px;height:168px; position: absolute; top: 280px; left: 15px; border:0;">	
 													<canvas !important id="myCanvas" style="height:100%; width:100%;  background" > </canvas>
 												</div>
@@ -54,7 +54,10 @@
                                 <a href="../../html/MainMenu.html" class="btn btn-default btn-lg"><i class="fa fa-home"></i><span class="">   Main Menu</span></a>
                             </li>
                             <li>
-                                <a href="javascript:window.open('','_self').close();" class="btn btn-default btn-lg"><i class="fa fa-sign-out"></i><span class="">   Quit</span></a>
+                                <a href="../../index.php" class="btn btn-default btn-lg"><i class="fa fa-caret-square-o-right"></i><span class="">   New Session</span></a>
+                             </li>
+                            <li>
+                                <a href="javascript:window.open('','_self').close();" class="btn btn-default btn-lg"><i class="fa fa-sign-out"></i><span class="">   Thanks!</span></a>
                              </li>
                         </ul>
 												<script>											
@@ -70,11 +73,17 @@
 												}
 											var canvas = document.getElementById('myCanvas');
 											var context = canvas.getContext('2d');
+											context.clearRect(0, 0, canvas.width, canvas.height);
+										/*	var imageObj = new Image();
+											imageObj.src ="soundpitch.jpg";
+											imageObj.onload =function(){
+												context.drawImage(imageObj, 0, 0, canvas.width, canvas.height);
+											};*/
+											
 											var myGraphArray = <?php echo $_SESSION["json_data"];?>;
 											
-																					
 											for( i=0; i < myGraphArray.length-1; i++){ 
-												drawLine((myGraphArray[i].t * 704), (myGraphArray[i].y * 168), (myGraphArray[i+1].t* 704),( myGraphArray[i+1].y * 168));
+												drawLine((myGraphArray[i].t * canvas.width), (myGraphArray[i].y * canvas.height), (myGraphArray[i+1].t* canvas.width),( myGraphArray[i+1].y * canvas.height));
 											} 
 												
 											</script>

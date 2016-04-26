@@ -28,6 +28,10 @@ function drawUserLine(){
   // drawing loop 
   if(play == 1){
 		context.clearRect(0, 0, canvas.width, canvas.height);
+		
+				//draws backwave
+		context.drawImage(imageObj, backwave_x, backwave_y);
+		context.drawImage(whiteCov, canvas.width * 0.55, 0);
 		if(userLine[0] != null){
 			for(i = 0; i < userLine.length - 1; i++){
 				drawLine(userLine[i].x , userLine[i].y, userLine[i+1].x, userLine[i+1].y);
@@ -41,11 +45,12 @@ function move_line_left(){
 	if(play == 1){
 		for(i = 0; i < userLine.length; i++){
 		 userLine[i].x -= 1;
-		 if(userLine[0].x < 0){
-			 userLine.splice(0,1);
+		 if(userLine[i] < -10){
+			 userLine.splice(i,1);
 		 }
 		}
-		setTimeout(function(){move_line_left();}, 10);
+		backwave_x -= 1;
+		setTimeout(function(){move_line_left();}, audio.duration * 1000/(imageObj.width ));
 	}
 }
 
@@ -136,12 +141,22 @@ var userLine = [];
 var trackedWave = [];
 var timer; 
 
+var imageObj = new Image();
+imageObj.src = '../Game/soundpitch.jpg';
+var whiteCov = new Image();
+whiteCov.src= '../../cover.jpg';
+
+var coverWidth;
+var coverHeight;
+
 var play = 1; //0=OFF 1=ON
 var mouse_move = 0;
 
 // Canvas Style
 canvas.width = window.innerWidth * 0.9;
 canvas.height = window.innerHeight * 0.7;
+var backwave_x = canvas.width * 0.55;
+var backwave_y = canvas.height * 0.4;
 
 
 window.addEventListener('keydown',manual_pp);
