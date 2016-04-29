@@ -1,2 +1,5 @@
 # UCL-App-Project-Brain-Focus
-1st year Computer Science students working on a waveform comparison solution.
+
+HTML5, CSS, JavaScript, PHP, MySQL
+
+1st year CS web developers for Brain Focus Ltd. 
