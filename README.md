@@ -2,4 +2,8 @@
 
 HTML5, CSS, JavaScript, PHP, MySQL
 
-1st year CS web developers for Brain Focus Ltd. 
+Website for Brain Focus Ltd. 
+
+Credits to : Ryan Tan Ti Ern (Backend & JavaScript) 
+             Georgiana Birjovanu (Frontend)
+             Alexander Chiriac (HTML)
