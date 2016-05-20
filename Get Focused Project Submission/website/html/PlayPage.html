@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>GetFocused</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../css/grayscale.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+<br><br><br>
+<center>
+    <div class="col-md-8 col-md-offset-2">
+        <h1 style="font-size:60px;">Get Focused!</h1><br><br><br><br>
+        <h1 style="font-size:50 px;">Select Track</h1><br><br>
+        <ul class="list-inline">
+            <li>
+                <a href="../Song1/Training/ButtonTraining.html" class="btn btn-default btn-lg" onclick="packageSong(1)"><i class="fa fa-music"></i><span class="">   Relaxed</span></a>
+            </li>
+            <br><br>
+            <li>
+                <a href="../Song2/Training/ButtonTraining.html" class="btn btn-default btn-lg" onclick="packageSong(2)"><i class="fa fa-music"></i><span class="">   Active</span></a>
+            </li>
+            <br><br>
+            <li>
+                <a href="../Song3/Training/ButtonTraining.html" class="btn btn-default btn-lg" onclick="packageSong(3)"><i class="fa fa-music"></i><span class="">   Energising</span></a>
+            </li>
+        </ul>
+
+    </div>
+		<script>
+		<!-- COMMENT THIS SCRIPT IF THERE IS NO SERVER -->
+		function packageSong(num){
+			var json_package = JSON.stringify({song : num}); // int
+			var request= new XMLHttpRequest();
+			var php_session = "../php/sess_addui.php";
+			request.open("POST", php_session, true);
+			request.setRequestHeader("Content-type", "application/JSON");
+			request.send(json_package);
+			console.log(num);
+
+		}					
+		</script>
+</center>
+
+</body>
+
+</html>
